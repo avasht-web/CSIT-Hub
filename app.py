@@ -1,6 +1,10 @@
 ﻿from flask import Flask, render_template, request
+import json 
+
 app = Flask(__name__)
-taskl=[]
+
+with open("tasks.json", "r") as file:
+    taskl=json.load(file)
 @app.route('/')
 @app.route('/home')
 def home():
@@ -15,8 +19,10 @@ def contact():
 def tasks():
     if request.method=="POST":
         task=request.form["task"]
-        taskl.append(task)
+        taskl.append(task)    
+        with open("tasks.json", "w") as file:
+            json.dump(taskl, file)
     return render_template('tasks.html', tasks=taskl)
-    
+
 if __name__ == '__main__':
     app.run(debug=True)

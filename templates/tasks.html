@@ -5,12 +5,14 @@
 <form action="#" method="post">
 <input type="text" name="task" placeholder="Add Task"><button type="submit">Confirm</button>
 <hr>
-<span><input type="checkbox" name="task1"> Complete Python practice</span><br>
+<div>
+  <span><input type="checkbox" name="task1"> Complete Python practice</span><br>
 <span><input type="checkbox" name="task2"> Finish networking lab</span><br>
 <span><input type="checkbox" name="task3"> Study flask</span>
 {% for task in tasks %}
-  <br><input type="checkbox"> {{task}}
-{% endfor %}
+    <br><input type="checkbox"> {{task}}
+{% endfor %}  
+</div>
 </form>
 </body>
 </html>
