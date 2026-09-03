@@ -1,7 +1,6 @@
-﻿from flask import Flask, render_template
-
+﻿from flask import Flask, render_template, request
 app = Flask(__name__)
-
+taskl=[]
 @app.route('/')
 @app.route('/home')
 def home():
@@ -12,9 +11,12 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
-@app.route('/tasks')
+@app.route('/tasks',methods=["GET", "POST"])
 def tasks():
-    return render_template('tasks.html')
+    if request.method=="POST":
+        task=request.form["task"]
+        taskl.append(task)
+    return render_template('tasks.html', tasks=taskl)
     
 if __name__ == '__main__':
     app.run(debug=True)
