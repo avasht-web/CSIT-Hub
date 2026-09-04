@@ -17,7 +17,7 @@ def contact():
     return render_template('contact.html')
 @app.route('/tasks',methods=["GET", "POST"])
 def tasks():
-    if request.method=="POST":
+    if request.method=="POST": 
         task=request.form["task"]
         taskl.append(task)    
         with open("tasks.json", "w") as file:
