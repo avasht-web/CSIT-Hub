@@ -1,8 +1,6 @@
 ﻿from flask import Flask, render_template, request
 import json 
-
-app = Flask(__name__)
-
+app=Flask(__name__)
 with open("tasks.json", "r") as file:
     taskl=json.load(file)
 @app.route('/')
@@ -23,6 +21,12 @@ def tasks():
         with open("tasks.json", "w") as file:
             json.dump(taskl, file)
     return render_template('tasks.html', tasks=taskl)
-
+@app.route('/api/student')
+def student():
+    return {
+        "name": "Your Name",
+    "college": "Madan Bhandari",
+    "course": "BSc CSIT"
+    }
 if __name__ == '__main__':
     app.run(debug=True)
