@@ -1,0 +1,31 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.container {
+display: grid;
+grid-template-columns:250px 1fr 1fr 1fr ;
+grid-template-rows: 0.2fr 3fr;
+color: grey;
+grid-template-areas: 
+"Sidebar Navbar Navbar Navbar"
+"Sidebar Maincontent Maincontent Maincontent";
+height: 100vh
+}
+.Navbar {
+    display: grid;
+    background-color:beige;
+    grid-area: Navbar;
+    height:80px
+}
+.Sidebar {
+    display: grid;
+    background-color:wheat;
+    grid-area: Sidebar;
+    height: 100%;
+}
+.Maincontent {
+    display: grid;
+    background-color:bisque;
+    grid-area: Maincontent;
+}
