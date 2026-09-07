@@ -4,28 +4,45 @@ body{
 }
 .container {
 display: grid;
-grid-template-columns:250px 1fr 1fr 1fr ;
+grid-template-columns:0.2fr 1fr;
 grid-template-rows: 0.2fr 3fr;
-color: grey;
 grid-template-areas: 
-"Sidebar Navbar Navbar Navbar"
-"Sidebar Maincontent Maincontent Maincontent";
+"Navbar Navbar"
+"Sidebar Maincontent";
 height: 100vh
 }
 .Navbar {
-    display: grid;
     background-color:beige;
     grid-area: Navbar;
     height:80px
 }
 .Sidebar {
-    display: grid;
+    display: flex;
     background-color:wheat;
     grid-area: Sidebar;
     height: 100%;
+    flex-direction: column;
+    align-items: center;
 }
 .Maincontent {
-    display: grid;
     background-color:bisque;
     grid-area: Maincontent;
+}
+.Sidebar ul {
+    list-style: none;
+    grid-area: Sidebar;
+    height: 100%;
+     width: 100%;            
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    padding: 0;
+    margin: 0;
+}
+
+.Sidebar a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 10px;
 }

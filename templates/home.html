@@ -7,7 +7,16 @@
         <body>
     <div class="container">
       <header class="Navbar"></header>
-      <aside class="Sidebar"></aside>
+      <aside class="Sidebar">
+         <a href="#" class="sb">Sidebar</a>
+         <ul>
+            <li><a href="#" class="dashboard">Dashboard</a></li>
+            <li><a href="/tasks" class="tasks">Tasks</a></li>
+            <li><a href="#" class="notes">Notes</a></li>
+            <li><a href="#" class="subjects">Subjects</a></li>
+            <li><a href="#" class="dashboard">Schedule</a></li>
+         </ul>
+      </aside>
       <main class="Maincontent">
          <h2>Student information</h2>
          <p id="sname"></p>
@@ -16,6 +25,5 @@
       </main>
     </div>
        <script src="{{ url_for('static', filename='styles.css') }}"></script>
-       </script>
         </body>
 </html>
