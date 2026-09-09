@@ -14,7 +14,10 @@ height: 100vh
 .Navbar {
     background-color:beige;
     grid-area: Navbar;
-    height:80px
+    height:80px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
 }
 .Sidebar {
     display: flex;
@@ -45,4 +48,22 @@ height: 100vh
     color: black;
     display: block;
     padding: 10px;
+    transition:all 0.2s;
+}
+.Sidebar a:hover{
+    color:rgb(198, 196, 196)
+}
+.logo{
+    height:100%;
+    width:auto;
+    display:block;
+}
+.Student ul{
+    list-style: none;
+    display: flex;
+    height:100%;
+    width:60%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
 }
