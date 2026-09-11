@@ -18,7 +18,9 @@ height: 100vh
     display:flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-end;
+    position: relative;
+    padding: 0 24px;
 }
 .Sidebar {
     display: flex;
@@ -36,24 +38,42 @@ height: 100vh
     list-style: none;
     grid-area: Sidebar;
     height: 100%;
-     width: 100%;            
+    width: 100%;            
     display: flex;
     flex-direction: column;
     align-items: flex-start; 
-    padding: 1;
-    margin: 0;
+    padding: 0;
+    margin: -20px;
 }
 .Sidebar a {
     text-decoration: none;
     color: black;
     display: block;
-    padding: 25px;
+    padding:10px;
     transition:all 0.2s;
 }
-.Sidebar a:hover{
-    color:rgb(198, 196, 196)
+.Sidebar li:hover{
+    background-color:rgb(244, 214, 158)
+}
+.Sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 1px 20px;
+    width: 100%;
+    gap:12px;
+}
+.Sidebar li i{
+    font-size:20px;
+}
+.sbl{
+    margin:-10px;
+    height:120%;
+    width:120%;
+
 }
 .logo{
+    position: absolute;
+    left:40%;
     height:100%;
     width:auto;
     display:block;
@@ -70,14 +90,14 @@ height: 100vh
 .cards{
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    margin:10px;
 }
 .card{
     background-color: antiquewhite;
     margin:10px;
-    width:200px;
-    height:150px;
-    border-radius: 15px;
+    width:250px;
+    height:120px;
+    border-radius: 5px;
     transition: all 0.2s;
 }
 .card:hover{
@@ -90,4 +110,17 @@ height: 100vh
     border-radius: 15px;
     margin-left: 15px;
     margin-right: 15px;
+    padding: 20px;
+}
+h2{
+    margin-left:20px;
+}
+p{
+    margin-left:20px;
+}
+h3{
+     margin-left:20px;
+}
+h4{
+     margin-left:20px;
 }
