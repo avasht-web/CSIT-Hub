@@ -1,0 +1,19 @@
+[33m9396605[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Merge branch 'main' of https://github.com/avasht-web/CSIT-Hub
+[33mb41b5d9[m removed pycache
+[33m480d94a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m SQLITE used as database and removed json as the database
+[33mdc6db93[m sqlite
+[33m96b3231[m fixed white blank footer space
+[33m4f0eb03[m better ui
+[33m06568d1[m hoempage with cards
+[33mebb36a7[m .
+[33m7e617d8[m now adds tasks without refreshing
+[33mc09c0f9[m sidebar layout
+[33m9781c45[m grid in homepage
+[33m534fd7c[m responsive made
+[33ma64765a[m student info on home page
+[33m78f6c68[m api endpoint
+[33m26b4e00[m js and flask connected
+[33m7c6580d[m added a json file to make added tasks permanent
+[33mb768ef7[m working add task button
+[33me84286b[m tasks added
+[33m9200338[m create basic flask pages
