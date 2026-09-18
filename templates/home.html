@@ -1,0 +1,73 @@
+ <html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+   </head>
+        <body>
+    <div class="container">
+      <header class="Navbar">
+         <img src="{{ url_for('static', filename='CSITHublogo.png') }}" class="logo" height:80px>
+         <nav class="Student">
+            <ul>
+               <li>Student</li>
+            </ul>
+         </nav>
+      </header>
+      <aside class="Sidebar">
+         <a href="#" class="sb"> <img src="{{ url_for('static', filename='CSITHublogo.png') }}" class="sbl" height:80px></a>
+         <ul>
+            <li>
+                 <i class='bx bx-home'></i>
+                 <a href="#" class="dashboard">Dashboard</a>
+            </li>
+            <li>
+               <i class='bx bx-check-square'></i>
+               <a href="/tasks" class="tasks">Tasks</a>
+            </li>
+            <li>
+               <i class='bx bx-edit-alt'></i>
+               <a href="#" class="notes">Notes</a>
+            </li>
+            <li>
+               <i class='bx bx-book-open'></i>
+               <a href="#" class="subjects">Subjects</a>
+            </li>
+            <li>
+               <i class='bx bx-calendar'></i>
+               <a href="#" class="schedule">Schedule</a>
+            </li>
+         </ul>
+      </aside>
+      <main class="Maincontent">
+         <h2>Welcome back!</h2>
+         <p id="sname"></p>
+         <p id="scollege"></p>
+         <p id="scourse"></p> 
+         <h3>Here's youre study overview.</h3>
+       
+         <section class="cards">
+            <div class="card">
+            <h3 align=center>Tasks</h3>
+            <p align=center>1</p>
+         </div>
+            <div class="card">
+            <h3 align=center>Notes</h3>
+            <p align=center>2</p>
+         </div>
+         <div class="card">
+            <h3 align=center>Subjects</h3>
+            <p align=center>6</p>
+         </div>
+         </section>
+         <h4>Recent Tasks</h4>
+         <div class="Recent"><p><input type="checkbox"> DB assignment</p><br>
+            <p><input type="checkbox">Study</p><br>
+            <p><input type="checkbox"> Read networking chapter</p>
+         </div>
+      </main>
+    </div>
+       <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+        </body>
+</html>
