@@ -9,7 +9,7 @@
 <hr>
 <div>
 {% for task in tasks %}
-    <br><input type="checkbox"> {{task}}
+    <br><input type="checkbox"> {{task['title']}}
 {% endfor %}  
 </div>
 </form>
