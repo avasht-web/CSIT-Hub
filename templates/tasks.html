@@ -1,0 +1,34 @@
+<html>
+  <meta charset="utf-8">
+   <meta name="viewport" content="width=device-wodth,initial-scale=1.0">
+<body>
+<h1>CSIT HUB</h1>
+<p>Tasks</p>
+<form action="#" method="post">
+<input type="text" name="task" placeholder="Add Task" id="t"><button type="submit" id="btn1">Confirm</button>
+<hr>
+<div>
+{% for task in tasks %}
+    <br><input type="checkbox"> {{task['title']}}
+{% endfor %}  
+</div>
+</form>
+</body>
+<script>
+  const btn= document.getElementById("btn1")
+  btn.addEventListener("click", fetc)
+  function fetc(){
+    
+    const input=document.getElementById("t")
+    const task=input.value
+    const data= new FormData()
+    data.append("task", task)
+    const response=fetch("http://127.0.0.1:5000/tasks",
+    { method: "POST",
+    body:data
+  }
+  event.preventDefault()
+)
+  }
+  </script>
+</html>
