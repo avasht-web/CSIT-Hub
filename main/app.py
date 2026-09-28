@@ -1,4 +1,4 @@
-﻿from flask import Flask, render_template, request
+﻿from flask import Flask, render_template, request, redirect
 import json 
 import sqlite3
 app=Flask(__name__, template_folder="../templates", static_folder="../static")
@@ -39,6 +39,14 @@ def tasks():
     conn.close()
     return render_template('tasks.html', tasks=tasks)
      
+@app.route('/tasks/delete/<int:id>', methods=["POST"])
+def delete_task(id):
+    conn=database()
+    conn.execute("DELETE FROM tasktable where id=?",(id,))
+    conn.commit()
+    conn.close()
+    return redirect('/tasks')
+
 @app.route('/api/student')
 def student():
     return {
