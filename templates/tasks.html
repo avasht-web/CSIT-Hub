@@ -6,29 +6,38 @@
 <p>Tasks</p>
 <form action="#" method="post">
 <input type="text" name="task" placeholder="Add Task" id="t"><button type="submit" id="btn1">Confirm</button>
-<hr>
+</form>
+ <hr>
 <div>
 {% for task in tasks %}
     <br><input type="checkbox"> {{task['title']}}
+   
+    <form action="/tasks/delete/{{task['id']}}" method="post">
+    <button type="submit" id="Delete">Delete</button>
+  </form>
 {% endfor %}  
 </div>
-</form>
+
 </body>
 <script>
-  const btn= document.getElementById("btn1")
-  btn.addEventListener("click", fetc)
-  function fetc(){
+  const btn = document.getElementById("btn1");
+  btn.addEventListener("click", fetc);
+  function fetc(event) {
+    event.preventDefault(); 
     
-    const input=document.getElementById("t")
-    const task=input.value
-    const data= new FormData()
-    data.append("task", task)
-    const response=fetch("http://127.0.0.1:5000/tasks",
-    { method: "POST",
-    body:data
+    const input = document.getElementById("t");
+    const task = input.value;
+    
+    const data = new FormData();
+    data.append("task", task);
+    
+    fetch("/tasks", { 
+      method: "POST",
+      body: data
+    }).then(() => {
+      location.reload(); 
+    });
   }
-  event.preventDefault()
-)
-  }
-  </script>
+</script>
+
 </html>
