@@ -47,6 +47,14 @@ def delete_task(id):
     conn.close()
     return redirect('/tasks')
 
+@app.route('/tasks/toggle/<int:id>', methods=["POST"])
+def check(id):
+    conn=database()
+    conn.execute("UPDATE tasktable SET completed = 1 - completed where id=?",(id,))
+    conn.commit()
+    conn.close()
+    return redirect('/tasks')
+
 @app.route('/api/student')
 def student():
     return {

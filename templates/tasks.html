@@ -10,8 +10,9 @@
  <hr>
 <div>
 {% for task in tasks %}
-    <br><input type="checkbox"> {{task['title']}}
-   
+<form action="/tasks/toggle/{{task['id']}}" method="post">
+    <br><input type="checkbox" onchange="this.form.submit()" {% if task['completed'] %}checked{% endif %} > {{task['title']}}
+    </form>
     <form action="/tasks/delete/{{task['id']}}" method="post">
     <button type="submit" id="Delete">Delete</button>
   </form>
