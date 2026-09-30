@@ -31,12 +31,16 @@ def contact():
 @app.route('/tasks',methods=["GET", "POST"])
 def tasks():
     conn=database()
+   
     if request.method=="POST":
         task=request.form["task"]
+        if not task:
+            return redirect('/tasks')
         conn.execute("INSERT INTO tasktable(title,completed) VALUES (?,?)", (task, 0))
         conn.commit()
     tasks=conn.execute("SELECT *FROM tasktable").fetchall()
     conn.close()
+    
     return render_template('tasks.html', tasks=tasks)
      
 @app.route('/tasks/delete/<int:id>', methods=["POST"])
