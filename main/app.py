@@ -1,14 +1,21 @@
-﻿from flask import Flask, render_template, request, redirect
+﻿from flask import Flask, render_template, request, redirect, session
 import json 
 import sqlite3
 app=Flask(__name__, template_folder="../templates", static_folder="../static")
-
+app.secret_key = "dakey"
 def database():
     conn=sqlite3.connect("../database/tasks.db")
     conn.row_factory=sqlite3.Row
     conn.execute("""
+    CREATE TABLE IF NOT EXISTS users(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL)
+    """)
+    conn.execute("""
     CREATE TABLE IF NOT EXISTS tasktable(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    uid INTEGER NOT NULL,
     title TEXT NOT NULL,
     completed INTEGER NOT NULL DEFAULT 0)
     """)
@@ -28,17 +35,22 @@ def about():
 def contact():
     return render_template('contact.html')
 
-@app.route('/tasks',methods=["GET", "POST"])
+@app.route('/tasks', methods=["GET", "POST"])
 def tasks():
-    conn=database()
+    if not session.get("uid"):
+        return redirect('/login')
+    
+    conn = database()
    
-    if request.method=="POST":
-        task=request.form["task"]
+    if request.method == "POST":
+        task = request.form.get("task") # use .get() so it doesn't crash on empty submissions
         if not task:
             return redirect('/tasks')
-        conn.execute("INSERT INTO tasktable(title,completed) VALUES (?,?)", (task, 0))
+
+        conn.execute("INSERT INTO tasktable(uid, title, completed) VALUES (?, ?, ?)", (session["uid"], task, 0))
         conn.commit()
-    tasks=conn.execute("SELECT *FROM tasktable").fetchall()
+
+    tasks = conn.execute("SELECT * FROM tasktable WHERE uid = ?", (session["uid"],)).fetchall()
     conn.close()
     
     return render_template('tasks.html', tasks=tasks)
@@ -58,6 +70,41 @@ def check(id):
     conn.commit()
     conn.close()
     return redirect('/tasks')
+
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    if request.method=="POST":
+        username=request.form.get("username")
+        password=request.form.get("password")
+        conn=database()
+        try:
+            conn.execute("INSERT into users (username,password) VALUES(?,?)",(username,password))
+            conn.commit()
+        except sqlite3.IntegrityError:
+            return "username already exists"
+        finally:
+            conn.close()        
+        return redirect('/login')    
+    return render_template('register.html')
+
+@app.route('/login', methods=["GET","POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        conn = database()
+        user = conn.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
+        conn.close()
+        if user and user["password"] == password:
+            session["uid"] = user["id"]
+            return redirect('/tasks')
+        return "invalid username or password"
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.clear() 
+    return redirect('/login')
 
 @app.route('/api/student')
 def student():
