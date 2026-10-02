@@ -20,7 +20,7 @@ body {
     width: 100%;
 }
 .Navbar {
-    background-color: beige;
+    background-color: rgb(247, 247, 247);
     grid-area: Navbar;
     height: 80px;
     display: flex;
@@ -31,7 +31,7 @@ body {
     padding: 0 24px;
 }
 .Sidebar {
-    background-color: wheat;
+    background-color: rgb(183, 157, 190);
     grid-area: Sidebar;
     display: flex;
     flex-direction: column;
@@ -51,10 +51,11 @@ body {
     align-items: flex-start;
     padding: 0;
     margin: 20px 0 0 0;
+    color: rgb(255, 254, 254);
 }
 .Sidebar a {
     text-decoration: none;
-    color: black;
+    color: rgb(255, 254, 254);
     display: block;
     padding: 12px;
     transition: all 0.2s;
@@ -70,7 +71,7 @@ body {
     font-size: 20px;
 }
 .Sidebar li:hover {
-    background-color: rgb(244, 214, 158);
+    background-color: rgb(139, 103, 172);
 }
 .Student ul {
     list-style: none;
@@ -91,7 +92,7 @@ body {
     display: block;
 }
 .Maincontent {
-    background-color: bisque;
+    background-color: rgb(255, 255, 255);
     grid-area: Maincontent;
     min-width: 0;
 }
