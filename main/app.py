@@ -97,6 +97,7 @@ def login():
         conn.close()
         if user and user["password"] == password:
             session["uid"] = user["id"]
+            session["username"]=user["username"]
             return redirect('/tasks')
         return "invalid username or password"
     return render_template('login.html')

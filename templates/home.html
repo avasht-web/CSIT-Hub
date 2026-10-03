@@ -1,9 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-         <h2>Welcome back!</h2>
-         <p id="sname"></p>
-         <p id="scollege"></p>
-         <p id="scourse"></p> 
+         <h2>Welcome back {{session.get('username')}}!</h2>
          <h3>Here's youre study overview.</h3>
        
          <section class="cards">
