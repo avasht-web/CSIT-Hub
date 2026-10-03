@@ -13,7 +13,7 @@
          <img src="{{ url_for('static', filename='CSITHublogo.png') }}" class="logo" height="80">
          <nav class="Student">
             <ul>
-               <li>Student</li>
+               <li>{{session.get('username')}}</li>
             </ul>
          </nav>
       </header>
@@ -25,8 +25,8 @@
             <li><i class='bx bx-home'></i> <a href="/" class="dashboard">Dashboard</a></li>
             <li><i class='bx bx-check-square'></i> <a href="/tasks" class="tasks">Tasks</a></li>
             <li><i class='bx bx-edit-alt'></i> <a href="#" class="notes">Notes</a></li>
-            <li><i class='bx bx-book-open'></i> <a href="#" class="subjects">Subjects</a></li>
-            <li><i class='bx bx-calendar'></i> <a href="#" class="schedule">Schedule</a></li>
+            <li><i class='bx bx-calendar' ></i> <a href="/calendar" class="calendar">Calendar</a></li>
+            <li><i class='bx bx-exit'></i> <a href="/logout" class="logout">Logout</a></li>
          </ul>
       </aside>
       <main class="Maincontent">
