@@ -31,7 +31,7 @@ body {
     padding: 0 24px;
 }
 .Sidebar {
-    background-color: rgb(183, 157, 190);
+    background-color: rgb(44, 7, 54);
     grid-area: Sidebar;
     display: flex;
     flex-direction: column;
@@ -40,8 +40,8 @@ body {
 }
 .sbl {
     margin: -10px;
-    height: 90px;
-    width: auto;
+    height:60px;
+    width:auto;
 }
 .Sidebar ul {
     list-style: none;
@@ -71,7 +71,7 @@ body {
     font-size: 20px;
 }
 .Sidebar li:hover {
-    background-color: rgb(139, 103, 172);
+    background-color: rgb(92, 57, 124);
 }
 .Student ul {
     list-style: none;
