@@ -1,26 +1,36 @@
 {% extends "layout.html" %}
+
 {% block content %}
-         <h2>Welcome back {{session.get('username')}}!</h2>
-         <h3>Here's youre study overview.</h3>
-       
-         <section class="cards">
-            <div class="card">
-            <h3 align=center>Tasks</h3>
-            <p align=center>1</p>
-         </div>
-            <div class="card">
-            <h3 align=center>Notes</h3>
-            <p align=center>2</p>
-         </div>
-         <div class="card">
-            <h3 align=center>Subjects</h3>
-            <p align=center>6</p>
-         </div>
-         </section>
-         <h4>Recent Tasks</h4>
-         <div class="Recent"><p><input type="checkbox"> DB assignment</p><br>
-            <p><input type="checkbox">Study</p><br>
-            <p><input type="checkbox"> Read networking chapter</p>
-         </div>
-      </main>
+<h2>Welcome back {{ session.get('username') }}!</h2>
+<h3>Here's your study overview.</h3>
+
+<section class="cards">
+    <div class="card">
+        <h3 align="center">Tasks</h3>
+        <p align="center">1</p>
+    </div>
+    <div class="card">
+        <h3 align="center">Notes</h3>
+        <p align="center">2</p>
+    </div>
+</section> 
+
+<div>
+    <h3>Quick Actions</h3>
+</div>
+
+<section class="crd">
+    <a href="/tasks" class="cr">
+        <h3>Add Task</h3> 
+        <i class='bx bx-chevron-right'></i>
+    </a>
+    <a href="/notes" class="cr">
+        <h3>Add Note</h3> 
+        <i class='bx bx-chevron-right'></i>
+    </a>
+    <a href="/schedule" class="cr">
+        <h3>View Calendar</h3> 
+        <i class='bx bx-chevron-right'></i>
+    </a>
+</section>
 {% endblock %}

@@ -23,8 +23,11 @@ def database():
     return conn
 
 @app.route('/')
+    
 @app.route('/home')
 def home():
+    if not session.get("uid"):
+        return redirect('/login')
     return render_template('home.html')
 
 @app.route('/about')
