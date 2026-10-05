@@ -30,13 +30,13 @@ def home():
         return redirect('/login')
     return render_template('home.html')
 
-@app.route('/about')
+@app.route('/calendar')
 def about():
-    return render_template('about.html')
+    return render_template('calendar.html')
 
-@app.route('/contact')
+@app.route('/notes')
 def contact():
-    return render_template('contact.html')
+    return render_template('notes.html')
 
 @app.route('/tasks', methods=["GET", "POST"])
 def tasks():

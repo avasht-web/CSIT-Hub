@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
 <h1>CSIT HUB</h1>
-<p>Tasks</p>
 <form action="#" method="post">
 <input type="text" name="task" placeholder="Add Task" id="t"><button type="submit" id="btn1">Confirm</button>
 </form>
  <hr>
 <div>
+<p>Tasks</p>
 {% for task in tasks %}
-<form action="/tasks/toggle/{{task['id']}}" method="post">
-    <br><input type="checkbox" onchange="this.form.submit()" {% if task['completed'] %}checked{% endif %} > {{task['title']}}
+<form action="/tasks/toggle/{{task['id']}}" method="post" style="gap: 5px;">
+    <input type="checkbox" onchange="this.form.submit()" {% if task['completed'] %}checked{% endif %} > {{task['title']}}
     </form>
     <form action="/tasks/delete/{{task['id']}}" method="post">
-    <button type="submit" id="Delete">Delete</button>
+    <button type="submit" id="Delete">Delete</button><br>
   </form>
 {% endfor %}  
 </div>
