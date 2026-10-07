@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<div style="padding: 20px;">
+    <h2>Edit Note</h2>
+    <div class="note-form-container">
+        <form action="/notes/edit/{{ note['id'] }}" method="post" class="note-form">
+            <input type="text" name="title" value="{{ note['title'] }}" required>
+            <textarea name="content" rows="6" required>{{ note['content'] }}</textarea>
+            <div style="display: flex; gap: 10px;">
+                <button type="submit" class="btn-submit">Save Changes</button>
+                <a href="/notes" class="btn-cancel" style="text-decoration: none; padding: 10px 15px; background: #e2e8f0; color: black; border-radius: 5px;">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

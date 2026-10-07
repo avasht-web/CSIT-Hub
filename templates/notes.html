@@ -1,7 +1,31 @@
 {% extends "layout.html" %}
-{% block content %} 
-    <h1>Contact Us</h1>
-     <p>email:CSIThub12@gmail.com<br>
-     contact no:9818181811
-     <a href="/tasks"><button>Check your tasks</button></a>
+{% block content %}
+<div style="padding: 20px;">
+    <h2>My Notes</h2>
+    <div class="note-form-container">
+        <form action="/notes" method="post" class="note-form">
+            <input type="text" name="title" placeholder="Note Title" required>
+            <br>
+            <textarea name="content" rows="4" placeholder="Write your note here..." required></textarea>
+            <button type="submit" class="btn-submit">Add Note</button>
+        </form>
+    </div>
+    <hr style="border: 0; border-top: 1px solid #ccc; margin: 30px 0; max-width: 700px;">
+    <div class="notes-list">
+        {% for note in notes %}
+            <div class="note-card">
+                <div class="note-content">
+                    <h3>{{ note['title'] }}</h3>
+                    <p>{{ note['content'] }}</p>
+                </div>
+                <div class="note-actions">
+                    <a href="/notes/edit/{{ note['id'] }}" class="btn-edit">Edit</a>
+                    <form action="/notes/delete/{{ note['id'] }}" method="post" style="margin: 0;">
+                        <button type="submit" class="btn-delete">Delete</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

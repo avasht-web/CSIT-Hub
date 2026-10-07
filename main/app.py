@@ -19,6 +19,13 @@ def database():
     title TEXT NOT NULL,
     completed INTEGER NOT NULL DEFAULT 0)
     """)
+    conn.execute("""
+    CREATE TABLE IF NOT EXISTS notestable(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    uid INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL)
+    """)
     conn.commit()
     return conn
 
@@ -32,21 +39,55 @@ def home():
 
 @app.route('/calendar')
 def about():
-    return render_template('calendar.html')
+    return render_template('calendar.html') 
 
-@app.route('/notes')
-def contact():
-    return render_template('notes.html')
+@app.route('/notes', methods=["GET", "POST"])
+def note():
+    if not session.get("uid"):
+        return redirect('/login')
+    conn = database()
+    if request.method == "POST":
+        title = request.form.get("title")
+        content = request.form.get("content")
+        if title and content:
+            conn.execute("INSERT INTO notestable(uid, title, content) VALUES (?, ?, ?)", (session["uid"], title, content))
+            conn.commit()            
+    ndata = conn.execute("SELECT * FROM notestable WHERE uid = ?", (session["uid"],)).fetchall()
+    conn.close()
+    return render_template('notes.html', notes=ndata)
+
+@app.route('/notes/edit/<int:id>', methods=["GET", "POST"])
+def edit_note(id):
+    if not session.get("uid"):
+        return redirect('/login')
+    conn = database()
+    if request.method == "POST":
+        title = request.form.get("title")
+        content = request.form.get("content")
+        if title and content:
+            conn.execute("UPDATE notestable SET title=?, content=? WHERE id=?", (title, content, id))
+            conn.commit()  
+        conn.close()
+        return redirect('/notes')
+    note_to_edit = conn.execute("SELECT * FROM notestable WHERE id = ?", (id,)).fetchone()
+    conn.close() 
+    return render_template('edit_note.html', note=note_to_edit)
+
+@app.route('/notes/delete/<int:id>', methods=["POST"])
+def delete_note(id):
+    conn = database()
+    conn.execute("DELETE FROM notestable WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
+    return redirect('/notes')
 
 @app.route('/tasks', methods=["GET", "POST"])
 def tasks():
     if not session.get("uid"):
         return redirect('/login')
-    
     conn = database()
-   
     if request.method == "POST":
-        task = request.form.get("task") # use .get() so it doesn't crash on empty submissions
+        task = request.form.get("task") 
         if not task:
             return redirect('/tasks')
 
