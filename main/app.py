@@ -1,4 +1,5 @@
 ﻿from flask import Flask, render_template, request, redirect, session
+from werkzeug.security import generate_password_hash, check_password_hash
 import json 
 import sqlite3
 app=Flask(__name__, template_folder="../templates", static_folder="../static")
@@ -88,10 +89,14 @@ def tasks():
     conn = database()
     if request.method == "POST":
         task = request.form.get("task") 
-        if not task:
+        if task:
+            ctask=task.strip()
+        else:
+            ctask=""
+        if not ctask or len(ctask)>150:        
             return redirect('/tasks')
 
-        conn.execute("INSERT INTO tasktable(uid, title, completed) VALUES (?, ?, ?)", (session["uid"], task, 0))
+        conn.execute("INSERT INTO tasktable(uid, title, completed) VALUES (?, ?, ?)", (session["uid"], ctask, 0))
         conn.commit()
 
     tasks = conn.execute("SELECT * FROM tasktable WHERE uid = ?", (session["uid"],)).fetchall()
@@ -122,7 +127,8 @@ def register():
         password=request.form.get("password")
         conn=database()
         try:
-            conn.execute("INSERT into users (username,password) VALUES(?,?)",(username,password))
+            hashed_password=generate_password_hash(password)
+            conn.execute("INSERT into users (username,password) VALUES(?,?)",(username,hashed_password))
             conn.commit()
         except sqlite3.IntegrityError:
             return "username already exists"
@@ -139,7 +145,7 @@ def login():
         conn = database()
         user = conn.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
         conn.close()
-        if user and user["password"] == password:
+        if user and check_password_hash(user["password"],password):
             session["uid"] = user["id"]
             session["username"]=user["username"]
             return redirect('/tasks')
