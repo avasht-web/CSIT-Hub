@@ -36,7 +36,10 @@ def database():
 def home():
     if not session.get("uid"):
         return redirect('/login')
-    return render_template('home.html')
+    conn= database()
+    task_count = conn.execute("SELECT COUNT(id) FROM tasktable WHERE uid = ?", (session["uid"],)).fetchone()[0]
+    note_count = conn.execute("SELECT COUNT(id) FROM notestable WHERE uid = ?", (session["uid"],)).fetchone()[0] 
+    return render_template('home.html', tasks=task_count, notes=note_count)
 
 @app.route('/calendar')
 def about():
