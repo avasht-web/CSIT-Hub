@@ -2,7 +2,7 @@
 
 A lightweight, full-stack web application built with Python and Flask, designed to handle user authentication, task tracking, and note management. 
 
-*Live Deployment:* []
+*Live Deployment:* [https://avash.pythonanywhere.com/]
 
 ## 🛠 Tech Stack
 * **Backend:** Python, Flask, SQLite3
